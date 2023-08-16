@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { ThemeProvider } from "./providers/mui/ThemeProvider";
+import { originalTheme } from "./themes";
+import { Playground } from "./components/CardUser";
 function App() {
-  const [count, setCount] = useState(0)
-
+  const userArr = [
+    {
+      firstName: "Oravanya",
+      lastName: "Sapsrithong",
+      age: "25",
+      img: "https://duoplanet.com/wp-content/uploads/2023/05/duolingo-avatar-4.png",
+    },
+    {
+      firstName: "Winnie",
+      lastName: "In the pooh",
+      age: "20",
+      img: "https://duoplanet.com/wp-content/uploads/2023/05/duolingo-avatar-5.png",
+    },
+    {
+      firstName: "Boom",
+      lastName: "Kanyaphasawee",
+      age: "35",
+      img: "https://duoplanet.com/wp-content/uploads/2023/05/duolingo-avatar-3.png",
+    },
+  ];
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ThemeProvider theme={originalTheme}>
+      {userArr.map((el) => (
+        <Playground
+          {...el}
+        ></Playground>
+      ))}
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
