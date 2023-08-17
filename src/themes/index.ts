@@ -68,8 +68,8 @@ const themeOptions: Theme = createTheme({
 
     },
     text: {
-      primary: '#000000', // general-900
-      secondary: '#eeeeee', // general-500
+      primary: '#1F1F1F', // general-900
+      secondary: '#7B7B7B', // general-500
       disabled: '#A7A7A7 ', // general-300
     },
     success: {

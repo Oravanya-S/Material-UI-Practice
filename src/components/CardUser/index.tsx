@@ -7,31 +7,24 @@ interface PlaygroundProps extends BoxProps {
   img: string;
 }
 
-// const Container = styled(Box)(({ theme }) => ({
-//   padding: theme.spacing(4),
-//   width: '100%',
-//   height: '50vh',
-//   display: 'flex',
-//   flexDirection: 'row',
-//   alignItems: 'center',
-//   justifyContent: 'center',
-// }));
-
 const Frame = styled(Box)(({ theme }) => ({
+  backgroundColor: 'white',
   border: `2px solid ${theme.palette.divider}`,
   borderRadius: '12px',
   padding: theme.spacing(1),
+  marginBottom: 12,
   height: 80,
   width: 370,
 }));
 
 export const Playground: React.FC<PlaygroundProps> = ({ firstName, lastName , age, img, children }) => {
   return (
-      <Stack spacing={1} margin={1}>
+      <Stack>
         <Frame>
             <Stack
                 direction={'row'}
                 spacing={2}
+                
             >
                 <Stack
                     direction={'column'}
