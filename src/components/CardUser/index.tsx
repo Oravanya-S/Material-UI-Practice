@@ -17,7 +17,7 @@ const Frame = styled(Box)(({ theme }) => ({
   width: 370,
 }));
 
-export const Playground: React.FC<PlaygroundProps> = ({ firstName, lastName , age, img, children }) => {
+export const Playground: React.FC<PlaygroundProps> = ({ firstName, lastName , age, img }) => {
   return (
       <Stack>
         <Frame>
