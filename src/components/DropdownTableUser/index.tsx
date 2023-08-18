@@ -58,8 +58,7 @@ export default function DropdownUser() {
   };
 
   return (
-    <div>
-      
+    <Stack>
       <IconButton aria-label="morevertrounded"
         onClick={handleClick}
       >
@@ -88,6 +87,6 @@ export default function DropdownUser() {
           <Stack sx={{color: '#ff0000', fontSize: 14}}>Delete</Stack>
         </MenuItem>
       </StyledMenu>
-    </div>
+    </Stack>
   );
 }

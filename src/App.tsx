@@ -4,10 +4,12 @@ import EnhancedTable from "./components/TableUser";
 import { Box, Button, Stack, Typography, styled } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import ImgMediaCard from "./components/ImgMediaCard";
+import { Navbar } from "./components/Navbar/Navbar";
+import ResponsiveAppBar from "./components/ResponsiveAppBar/ResponsiveAppbar";
 
 const Container = styled(Box)(({ theme }) => ({
   backgroundColor: '#fafafa',
-  padding: theme.spacing(4),
+  padding: theme.spacing(3),
   width: '100%',
   minHeight: '100vh',
   display: 'flex',
@@ -19,6 +21,7 @@ const Container = styled(Box)(({ theme }) => ({
 function App() {
   return (
     <ThemeProvider theme={originalTheme}>
+      <ResponsiveAppBar />
       <Container>
           <Stack
             flexDirection={'row'}
@@ -32,6 +35,10 @@ function App() {
       </Container>
 
       <Container>
+        <Navbar>
+
+        </Navbar>
+        <Typography variant='h3'>Products</Typography>
         <ImgMediaCard />
       </Container>
     </ThemeProvider>

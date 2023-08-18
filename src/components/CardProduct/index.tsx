@@ -7,10 +7,10 @@ interface PlaygroundProps extends BoxProps {
   img: string;
   name: string;
   price: number;
+  discount: number;
 }
 
 // const Container = styled(Box)(({ theme }) => ({
-//   padding: theme.spacing(4),
 //   width: '100%',
 //   height: '50vh',
 //   display: 'flex',
@@ -26,30 +26,38 @@ interface PlaygroundProps extends BoxProps {
 //   minHeight: 200,
 // }));
 
-export const CardProduct: React.FC<PlaygroundProps> = ({ img, name, price, children }) => {
+export const CardProduct: React.FC<PlaygroundProps> = ({ img, name, price, discount, children }) => {
   return (
-    <Card sx={{ maxWidth: 300, borderRadius: 4 }}>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        image={img}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
-          {name}
-        </Typography>
-        <Typography variant="body2">
-          <Stack
-            direction={'row'}
-            justifyContent={'space-between'}
-          >
-            <Stack direction={'row'} alignItems={'center'}>
-                {children}
+    // <Container>
+        <Card sx={{ borderRadius: 4 }}>
+        <CardMedia
+            component="img"
+            alt="green iguana"
+            image={img}
+        />
+        <CardContent>
+            <Typography gutterBottom variant="h6" noWrap={true} component="div">
+                {name}
+            </Typography>
+            <Typography variant="h5">
+            <Stack
+                direction={'row'}
+                justifyContent={'space-between'}
+            >
+                <Stack direction={'row'} alignItems={'center'} marginLeft={'6px'}>
+                    {children}
+                </Stack>
+                <Stack
+                    direction={'row'}
+                    gap={1}
+                >
+                    {discount? <Stack sx={{color: '#B7B7B7', textDecorationLine: 'line-through'}}>${price}</Stack> : ""}
+                    {discount? <Stack>${(price*(1-discount/100)).toFixed(2)}</Stack>: <Stack>${price}</Stack>}
+                </Stack>
             </Stack>
-            <Stack>${price}</Stack>
-          </Stack>
-        </Typography>
-      </CardContent>
-    </Card>
+            </Typography>
+        </CardContent>
+        </Card>
+    // </Container>
   );
 };

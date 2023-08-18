@@ -87,7 +87,7 @@ const themeOptions: Theme = createTheme({
     overlay,
   },
   typography: {
-    fontFamily: "'Poppins', sans-serif;",
+    fontFamily: "'Roboto', sans-serif;",
     display: {
       fontSize: '1.75rem',
       fontWeight: 700,
@@ -117,7 +117,6 @@ const themeOptions: Theme = createTheme({
       fontSize: '1rem', // 16px
       fontWeight: 600,
       lineHeight: 1.5,
-      color: '#a9a9a9'
     },
     h6: {
       fontSize: '0.75rem', // 12px
