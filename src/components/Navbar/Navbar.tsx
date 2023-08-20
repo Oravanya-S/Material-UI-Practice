@@ -44,9 +44,7 @@ export const Navbar: React.FC<PlaygroundProps> = () => {
                 </IconButton>
             </Stack>
             <Stack direction={"row"}>
-                <IconButton aria-label="notification">
-                    <NotificationsIcon />
-                </IconButton>
+                
                 <IconButton aria-label="cart">
                     <ShoppingCartIcon />
                 </IconButton>
