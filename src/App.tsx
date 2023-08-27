@@ -1,11 +1,12 @@
 import { ThemeProvider } from "./providers/mui/ThemeProvider";
 import { originalTheme } from "./themes";
 import EnhancedTable from "./components/TableUser";
-import { Box, Button, Input, Stack, Typography, styled } from "@mui/material";
+import { Box, Button, Stack, Typography, styled } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import ImgMediaCard from "./components/ImgMediaCard";
 import ResponsiveAppBar from "./components/ResponsiveAppBar/ResponsiveAppbar";
-import { useForm } from "react-hook-form";
+import Sidebar from "./components/Sidebar/Sidebar";
+
 
 const Container = styled(Box)(({ theme }) => ({
   backgroundColor: "#fafafa",
@@ -18,53 +19,30 @@ const Container = styled(Box)(({ theme }) => ({
 }));
 
 function App() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
   return (
     <ThemeProvider theme={originalTheme}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack direction={'row'} spacing={3}>
-          <Stack>
-            <Input
-              defaultValue=""
-              placeholder="firstname"
-              {...register("firstName", { required: true })}
-            />
-            {errors.firstName && <span>firstName is required</span>}
-          </Stack>
-          <Stack>
-            <Input
-              placeholder="lastname"
-              {...register("lastName", { required: true })}
-            />
+      <Stack direction={"row"} spacing={0} justifyContent={"space-between"}>
+          <Sidebar />
+        <Stack sx={{ flex: 6 }}>
+          <ResponsiveAppBar />
+          {/* <Container> */}
+            {/* <Stack
+              flexDirection={"row"}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+            >
+              <Typography variant="h2">User</Typography>
+              <Button startIcon={<Add></Add>}>New User</Button>
+            </Stack> */}
+            {/* <EnhancedTable /> */}
+          {/* </Container> */}
 
-            {errors.lastName && <span>LastName is required</span>}
-          </Stack>
-          <input type="submit" />
+          <Container>
+            <Typography variant="h3">Products</Typography>
+            <ImgMediaCard />
+          </Container>
         </Stack>
-      </form>
-      <ResponsiveAppBar />
-      <Container>
-        <Stack
-          flexDirection={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-        >
-          <Typography variant="h2">User</Typography>
-          <Button startIcon={<Add></Add>}>New User</Button>
-        </Stack>
-        <EnhancedTable />
-      </Container>
-
-      <Container>
-        <Typography variant="h3">Products</Typography>
-        <ImgMediaCard />
-      </Container>
+      </Stack>
     </ThemeProvider>
   );
 }

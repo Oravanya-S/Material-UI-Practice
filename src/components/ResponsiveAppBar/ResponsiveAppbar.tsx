@@ -8,11 +8,9 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
-import TocIcon from "@mui/icons-material/Toc";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge, Divider, Stack } from "@mui/material";
@@ -38,22 +36,22 @@ const languages = [
 ];
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+  const [anchorElLang, setAnchorElLang] = React.useState<null | HTMLElement>(
     null
   );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenLangMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElLang(event.currentTarget);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleCloseLangMenu = () => {
+    setAnchorElLang(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -61,7 +59,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "#fafafa" }}>
+    <AppBar position="static" sx={{ bgcolor: "#fafafa", p: 1 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1 }}>
@@ -70,139 +68,78 @@ function ResponsiveAppBar() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              // onClick={handleOpenLangMenu}
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              //   sx={{
-              //     display: { xs: 'block', md: 'none' },
-              //   }}
-            >
-              {languages.map((lang) => (
-                <MenuItem key={lang.id} onClick={handleCloseNavMenu}>
-                  <Typography>
-                    <Stack direction={"row"} gap={1}>
-                      <Stack>
-                        <img src={lang.img} alt="" />
-                      </Stack>
-                      <Stack>{lang.name}</Stack>
-                    </Stack>
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
             <IconButton aria-label="search" size="large">
               <SearchIcon />
             </IconButton>
           </Box>
 
-          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box> */}
-          {}
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton aria-label="notification">
+          <Stack direction={"row"} spacing={1}>
+            <Box sx={{ flexGrow: 0 }}>
+              <IconButton onClick={handleOpenLangMenu} sx={{ p: 1 }}>
                 <img
                   src="https://minimal-kit-react.vercel.app/assets/icons/ic_flag_en.svg"
-                  alt="english"
+                  alt="english" 
+                  width={28}
+                  height={28}
                 />
               </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <Stack sx={{ marginInline: 3, marginBlockEnd: 1, minWidth: 180 }}>
-                <Typography variant="h5">Jaydon Frankie</Typography>
-                <Typography
-                  variant="h5"
-                  color={"#7B7B7B"}
-                  sx={{ color: "#7B7B7B", fontWeight: "normal" }}
+              <Menu
+                sx={{ mt: '2px' }}
+                id="menu-applanguage"
+                anchorEl={anchorElLang}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElLang)}
+                onClose={handleCloseLangMenu}
+                //   sx={{
+                //     display: { xs: 'block', md: 'none' },
+                //   }}
+              >
+                <Stack
+                  sx={{ marginInline: 3, marginBlockEnd: 0, minWidth: 120 }}
                 >
-                  demo@minimals.cc
-                </Typography>
-              </Stack>
-              <Divider sx={{ marginBottom: "8px" }} />
-              {settings.map((setting) => (
-                <MenuItem
-                  key={setting}
-                  onClick={handleCloseUserMenu}
-                  sx={{ marginInline: "8px", borderRadius: 1 }}
-                >
-                  <Typography textAlign="center">{setting}</Typography>
+
+                </Stack>
+              {languages.map((lang) => (
+                <MenuItem key={lang.id} onClick={handleCloseLangMenu} sx={{ marginInline: "8px", borderRadius: 1 }}>
+                    <Stack direction={"row"} gap={2}>
+                      <Stack>
+                        <img src={lang.img} alt={lang.name} />
+                      </Stack>
+                      <Stack>{lang.name}</Stack>
+                    </Stack>
                 </MenuItem>
               ))}
-              <Divider />
-              <MenuItem
-                key={"logout"}
-                onClick={handleCloseUserMenu}
-                sx={{ marginInline: "8px", borderRadius: 1 }}
-              >
-                <Typography textAlign="center">Logout</Typography>
-              </MenuItem>
             </Menu>
-          </Box>
-
-          <Stack direction={"row"} spacing={1}>
-            <IconButton aria-label="notification">
-              <img
-                src="https://minimal-kit-react.vercel.app/assets/icons/ic_flag_en.svg"
-                alt="english"
-              />
-            </IconButton>
+            </Box>
             
             <IconButton aria-label="notification">
-                <Badge badgeContent={4} color="primary">
-                    <NotificationsIcon color="action" />
-                </Badge>
+              <Badge badgeContent={2} color="error">
+                <NotificationsIcon color="action" />
+              </Badge>
             </IconButton>
+
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    alt="Emy Sharp"
-                    src="https://duoplanet.com/wp-content/uploads/2023/05/duolingo-avatar-4.png"
-                  />
-                </IconButton>
-              </Tooltip>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar
+                  alt="Emy Sharp"
+                  src="https://duoplanet.com/wp-content/uploads/2023/05/duolingo-avatar-4.png"
+                />
+              </IconButton>
               <Menu
                 sx={{ mt: "45px" }}
-                id="menu-appbar"
+                id="menu-appuser"
                 anchorEl={anchorElUser}
                 anchorOrigin={{
                   vertical: "top",
